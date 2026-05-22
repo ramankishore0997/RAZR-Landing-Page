@@ -1,35 +1,18 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Zap, Shield, TrendingUp, Users, Clock, RefreshCcw, DollarSign, Briefcase, ShieldCheck, HeadphonesIcon, BarChart, CheckCircle2, ChevronRight } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
-import { useRef } from "react";
+import Navbar from "@/components/Navbar";
+import FloatingCTA from "@/components/FloatingCTA";
+
+const WA_LINK = "https://wa.me/917065339146";
 
 export default function Landing() {
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -200]);
-
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 font-sans">
       
       {/* Dynamic Background Noise & Gradients */}
       <div className="fixed inset-0 pointer-events-none opacity-20 mix-blend-screen z-0" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
       
-      {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-background/60 backdrop-blur-xl">
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="font-black text-3xl tracking-tighter bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent flex items-center gap-2">
-            RAZR<span className="text-primary text-4xl leading-none">.</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
-            <a href="#benefits" className="hover:text-white transition-colors">Benefits</a>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
-            <a href="#process" className="hover:text-white transition-colors">Process</a>
-          </div>
-          <a href="https://wa.me/message/RAZR" target="_blank" rel="noreferrer" className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-5 py-2.5 rounded-full font-semibold text-sm transition-all flex items-center gap-2 shadow-[0_0_15px_-5px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_-5px_rgba(255,255,255,0.2)]">
-            Client Portal <ChevronRight className="w-4 h-4" />
-          </a>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="pt-40 pb-20 md:pt-56 md:pb-32 px-4 relative flex flex-col items-center justify-center min-h-[90vh]">
@@ -76,12 +59,23 @@ export default function Landing() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
-            <a href="https://wa.me/message/RAZR" target="_blank" rel="noreferrer" className="group relative w-full sm:w-auto px-8 py-5 bg-white text-black rounded-xl font-bold text-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2 overflow-hidden">
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="button-hero-primary"
+              className="group relative w-full sm:w-auto px-8 py-5 bg-white text-black rounded-xl font-bold text-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2 overflow-hidden"
+            >
               <span className="relative z-10">Get Agency Ad Account</span>
               <ChevronRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="https://wa.me/message/RAZR" target="_blank" rel="noreferrer" className="w-full sm:w-auto px-8 py-5 bg-card/40 backdrop-blur-sm border border-white/10 text-white rounded-xl font-bold text-lg hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-2">
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="button-hero-secondary"
+              className="w-full sm:w-auto px-8 py-5 bg-card/40 backdrop-blur-sm border border-white/10 text-white rounded-xl font-bold text-lg hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-2"
+            >
               Talk To Support
             </a>
           </motion.div>
@@ -100,7 +94,7 @@ export default function Landing() {
               { label: "Top-Up Fee", value: "2%" },
               { label: "Min Deposit", value: "$50" }
             ].map((stat, i) => (
-              <div key={i} className="p-8 bg-background/80 backdrop-blur-xl flex flex-col items-center justify-center relative group">
+              <div key={i} data-testid={`card-stat-${i}`} className="p-8 bg-background/80 backdrop-blur-xl flex flex-col items-center justify-center relative group">
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tight group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
                 <div className="text-xs md:text-sm font-semibold text-muted-foreground uppercase tracking-wider">{stat.label}</div>
@@ -120,7 +114,7 @@ export default function Landing() {
               "Scaling Ready",
               "Agency Grade"
             ].map((stat, i) => (
-              <div key={i} className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
+              <div key={i} data-testid={`badge-trust-${i}`} className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
                 <CheckCircle2 className="w-5 h-5 text-primary" />
                 <span className="text-lg font-bold tracking-tight text-white">{stat}</span>
               </div>
@@ -157,7 +151,8 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.1 }}
-                key={i} 
+                key={i}
+                data-testid={`card-benefit-${i}`}
                 className="p-8 rounded-2xl bg-card/30 border border-white/5 hover:border-primary/30 hover:bg-card/60 transition-all group relative overflow-hidden backdrop-blur-sm"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -223,7 +218,13 @@ export default function Landing() {
                 ))}
               </div>
 
-              <a href="https://wa.me/message/RAZR" target="_blank" rel="noreferrer" className="block w-full py-5 bg-white text-black rounded-xl font-black text-lg hover:bg-white/90 transition-all hover:scale-[1.02] shadow-[0_0_30px_-5px_rgba(255,255,255,0.3)]">
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noreferrer"
+                data-testid="button-pricing-activate"
+                className="block w-full py-5 bg-white text-black rounded-xl font-black text-lg hover:bg-white/90 transition-all hover:scale-[1.02] shadow-[0_0_30px_-5px_rgba(255,255,255,0.3)]"
+              >
                 Activate Account Now
               </a>
             </div>
@@ -253,7 +254,8 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                key={i} 
+                key={i}
+                data-testid={`card-process-${i}`}
                 className="relative pt-8 md:pt-0"
               >
                 <div className="w-16 h-16 rounded-full bg-background border-2 border-primary text-primary flex items-center justify-center text-xl font-black mb-8 relative z-10 mx-auto md:mx-0 shadow-[0_0_30px_-5px_rgba(59,130,246,0.4)]">
@@ -269,6 +271,46 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Contact CTA Banner */}
+      <section className="py-24 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
+        <div className="container mx-auto max-w-4xl relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-1 rounded-3xl bg-gradient-to-r from-primary/30 via-accent/20 to-primary/30"
+          >
+            <div className="p-10 md:p-14 rounded-[22px] bg-background text-center">
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+                Ready to start scaling?
+              </h2>
+              <p className="text-xl text-muted-foreground font-medium mb-10 max-w-xl mx-auto">
+                Message us on WhatsApp and get your agency account activated within 1 hour.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href={WA_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-testid="button-cta-banner"
+                  className="px-10 py-5 bg-white text-black rounded-xl font-black text-lg hover:bg-white/90 transition-all hover:scale-[1.02] shadow-[0_0_30px_-5px_rgba(255,255,255,0.2)] flex items-center gap-2"
+                >
+                  Get Agency Ad Account <ChevronRight className="w-5 h-5" />
+                </a>
+                <a
+                  href="/contact"
+                  data-testid="link-cta-contact"
+                  className="px-10 py-5 bg-white/5 border border-white/10 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center gap-2"
+                >
+                  Contact Us <ChevronRight className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-20 px-4 border-t border-white/10 bg-background relative overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-primary/5 blur-[100px] rounded-[100%] pointer-events-none" />
@@ -280,10 +322,12 @@ export default function Landing() {
             <p className="text-muted-foreground font-medium">Premium Meta Advertising Solutions</p>
           </div>
           
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             <a href="#benefits" className="text-muted-foreground hover:text-white transition-colors font-medium">Benefits</a>
             <a href="#pricing" className="text-muted-foreground hover:text-white transition-colors font-medium">Pricing</a>
             <a href="#process" className="text-muted-foreground hover:text-white transition-colors font-medium">Process</a>
+            <a href="/faq" className="text-muted-foreground hover:text-white transition-colors font-medium">FAQ</a>
+            <a href="/contact" className="text-muted-foreground hover:text-white transition-colors font-medium">Contact</a>
           </div>
         </div>
         <div className="container mx-auto mt-16 pt-8 border-t border-white/5 text-center text-sm font-medium text-muted-foreground/60">
@@ -291,19 +335,7 @@ export default function Landing() {
         </div>
       </footer>
 
-      {/* Sticky Elements */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4 items-end">
-        <a href="https://wa.me/message/RAZR" target="_blank" rel="noreferrer" className="bg-[#25D366] text-white p-4 rounded-full shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform flex items-center justify-center">
-          <FaWhatsapp className="w-8 h-8" />
-        </a>
-      </div>
-
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 hidden md:block">
-        <a href="https://wa.me/message/RAZR" target="_blank" rel="noreferrer" className="bg-background/80 backdrop-blur-xl border border-white/10 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-white/5 transition-all shadow-2xl flex items-center gap-2">
-          Get Started Now <ChevronRight className="w-4 h-4" />
-        </a>
-      </div>
-      
+      <FloatingCTA />
     </div>
   );
 }
