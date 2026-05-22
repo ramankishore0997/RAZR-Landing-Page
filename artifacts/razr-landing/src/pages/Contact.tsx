@@ -75,7 +75,7 @@ export default function Contact() {
       </main>
 
       <footer className="py-8 px-4 border-t border-white/5 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} RAZR Agency Ad Account. All rights reserved.
+        © {new Date().getFullYear()} RAZR Marketing. All rights reserved.
       </footer>
       <FloatingCTA />
     </div>

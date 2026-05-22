@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Landing from "@/pages/Landing";
 import Contact from "@/pages/Contact";
 import FAQ from "@/pages/FAQ";
+import Benefits from "@/pages/Benefits";
+import Process from "@/pages/Process";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -20,6 +22,8 @@ function App() {
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Switch>
             <Route path="/" component={Landing} />
+            <Route path="/benefits" component={Benefits} />
+            <Route path="/process" component={Process} />
             <Route path="/contact" component={Contact} />
             <Route path="/faq" component={FAQ} />
             <Route component={Landing} />
