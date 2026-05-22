@@ -1,0 +1,6 @@
+[build]
+buildCommand = "pnpm install --frozen-lockfile && pnpm --filter @workspace/razr-landing run build"
+
+[deploy]
+startCommand = "npx serve artifacts/razr-landing/dist/public -l $PORT -s"
+healthcheckPath = "/"
