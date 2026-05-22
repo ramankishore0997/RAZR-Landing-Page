@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Shield, TrendingUp, Clock, RefreshCcw, DollarSign, Briefcase, ShieldCheck, BarChart, Check, X, ArrowRight, Users, Building2, Megaphone, ChevronRight } from "lucide-react";
+import { Zap, Shield, TrendingUp, Clock, RefreshCcw, DollarSign, Briefcase, ShieldCheck, BarChart, Check, X, ArrowRight, Users, Building2, Megaphone, ChevronRight, HeadphonesIcon } from "lucide-react";
 import { Link } from "wouter";
 import Navbar from "@/components/Navbar";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -83,7 +83,7 @@ export default function Landing() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-wrap gap-2"
               >
-                {["₹1999 One-Time Setup", "2% Top-Up Fee", "$50 Min Deposit", "Activated In 1 Hour", "Lifetime Replacement"].map((badge, i) => (
+                {["Blackhat & Whitehat", "Priority Support", "Activated In 1 Hour", "Lifetime Replacement"].map((badge, i) => (
                   <div key={i} className="px-3 py-1.5 rounded-full text-xs font-medium border border-white/10 bg-white/5 text-gray-300">
                     {badge}
                   </div>
@@ -129,7 +129,7 @@ export default function Landing() {
                 <div className="space-y-3 mb-6">
                   {[
                     { label: "Spend Limit", value: "Unlimited" },
-                    { label: "Top-Up Fee", value: "2%" },
+                    { label: "Status", value: <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>Active</span> },
                     { label: "Activation", value: "< 1 Hour" },
                   ].map((row, i) => (
                     <div key={i} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
@@ -154,7 +154,7 @@ export default function Landing() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
             {[
               { value: "2,000+", label: "Accounts Activated" },
-              { value: "₹1999", label: "One-Time Setup Fee" },
+              { value: "5 Min", label: "Avg. Response Time" },
               { value: "< 1 Hr", label: "Activation Time" },
               { value: "24/7", label: "Support Response" },
             ].map((s, i) => (
@@ -309,11 +309,11 @@ export default function Landing() {
               className="md:col-span-2 bg-[#111116] border border-white/5 rounded-2xl p-6 flex items-center gap-5"
             >
               <div className="w-10 h-10 bg-green-500/10 rounded-xl flex items-center justify-center shrink-0">
-                <DollarSign className="w-5 h-5 text-green-500" />
+                <HeadphonesIcon className="w-5 h-5 text-green-500" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-white mb-0.5">Start With Just $50</h3>
-                <p className="text-sm text-gray-400">Minimum $50 deposit. 2% top-up fee. One-time ₹1999 setup. No subscriptions.</p>
+                <h3 className="font-display font-bold text-white mb-0.5">Priority Support</h3>
+                <p className="text-sm text-gray-400">Direct WhatsApp access to our team. No tickets, no queues — real answers in under 5 minutes.</p>
               </div>
             </motion.div>
 
@@ -336,37 +336,35 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── Comparison Table ─────────────────────────────────── */}
-      <section className="py-24 px-4">
-        <div className="container mx-auto max-w-5xl">
+      {/* ── Why Agency Accounts? ──────────────────────────────── */}
+      <section className="py-24 px-4 bg-[#050508]">
+        <div className="container mx-auto max-w-6xl">
           <div className="mb-14 text-center">
             <p className="text-xs font-mono uppercase tracking-widest text-blue-400 mb-3">Why upgrade</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">Standard vs RAZR.</h2>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">Why Agency Accounts?</h2>
           </div>
-          <div className="border border-white/10 rounded-2xl overflow-hidden bg-black/20">
-            <div className="grid grid-cols-3 p-5 bg-white/5 border-b border-white/10">
-              <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Feature</div>
-              <div className="text-xs font-semibold text-red-400/80 uppercase tracking-wider text-center">Standard Account</div>
-              <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider text-center flex items-center justify-center gap-1.5">
-                <Zap className="w-3 h-3" /> RAZR Marketing
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: "Daily Spend Cap", std: "₹5k–₹15k limit", rz: "Unlimited" },
-              { name: "Restriction Risk", std: "Very High", rz: "Very Low" },
-              { name: "Support", std: "AI Bots / Tickets", rz: "Direct WhatsApp" },
-              { name: "Replacement Policy", std: "None", rz: "Lifetime Free" },
-              { name: "Activation Time", std: "Days / Weeks", rz: "Within 1 Hour" },
-              { name: "Team / BM Access", std: "Limited", rz: "Full Access" },
-              { name: "Niche Support", std: "Whitehat Only", rz: "BH + WH Both" },
-            ].map((row, i) => (
-              <div key={i} className={`grid grid-cols-3 p-5 border-b border-white/5 last:border-0 ${i % 2 === 0 ? "bg-white/[0.015]" : ""}`}>
-                <div className="text-sm font-medium text-gray-300">{row.name}</div>
-                <div className="text-sm text-center text-red-400/70 flex items-center justify-center gap-1.5">
-                  <X className="w-3 h-3 shrink-0" /> {row.std}
+              {
+                problem: "Your ads keep getting restricted",
+                solution: "Standard Meta accounts are flagged constantly. Agency accounts operate on a different tier of the platform — trusted, stable, built for volume.",
+              },
+              {
+                problem: "You're hitting daily spend caps",
+                solution: "Standard personal accounts cap your daily spend at fractions of what you can actually convert. Agency accounts have no artificial ceiling.",
+              },
+              {
+                problem: "Support doesn't help when it matters",
+                solution: "When your account has an issue, Meta's standard support is slow and unhelpful. RAZR gives you a direct line to someone who can actually fix it — now.",
+              },
+            ].map((card, i) => (
+              <div key={i} className="bg-[#0d0d12] border border-white/5 rounded-2xl p-8 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-red-400/90 mb-6">{card.problem}</h3>
                 </div>
-                <div className="text-sm text-center text-green-400 flex items-center justify-center gap-1.5 font-semibold">
-                  <Check className="w-3 h-3 shrink-0" /> {row.rz}
+                <div>
+                  <div className="w-full h-px bg-white/10 mb-6"></div>
+                  <p className="text-gray-300 leading-relaxed">{card.solution}</p>
                 </div>
               </div>
             ))}
@@ -384,7 +382,7 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
-                quote: "Switched from my personal account to RAZR and my daily spend cap went from ₹8k to unlimited. ROAS improved because campaigns stopped getting interrupted.",
+                quote: "Switched from my personal account to RAZR and my daily spend cap went from a hard daily limit to completely unlimited. ROAS improved because campaigns stopped getting interrupted.",
                 name: "Arjun S.",
                 role: "Performance Marketer, Mumbai",
                 avatar: "bg-blue-500",
@@ -396,7 +394,7 @@ export default function Landing() {
                 avatar: "bg-indigo-500",
               },
               {
-                quote: "The ₹1999 setup fee paid for itself on day one. We run blackhat affiliate offers that can't touch standard Meta accounts — RAZR is the only solution that works.",
+                quote: "We run blackhat affiliate offers that can't touch standard Meta accounts — RAZR is the only solution that works. The stability alone has transformed our campaigns.",
                 name: "Rohan K.",
                 role: "Affiliate Marketer, Delhi",
                 avatar: "bg-violet-500",
@@ -471,7 +469,7 @@ export default function Landing() {
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-white/5 via-blue-500/50 to-white/5 -translate-y-1/2" />
             {[
               { title: "Submit Request", desc: "Message us on WhatsApp with your niche and requirements.", opacity: "opacity-30" },
-              { title: "Complete Payment", desc: "Pay the one-time ₹1999 setup fee via your preferred method.", opacity: "opacity-55" },
+              { title: "Complete Payment", desc: "Make the one-time setup payment via your preferred method.", opacity: "opacity-55" },
               { title: "Account Setup", desc: "We configure and link your agency-grade Meta account.", opacity: "opacity-80" },
               { title: "Start Scaling", desc: "Account delivered within 1 hour. Load funds and go live.", opacity: "opacity-100" },
             ].map((step, i) => (
@@ -502,7 +500,7 @@ export default function Landing() {
                   Ready to stop getting capped?
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed">
-                  One-time ₹1999 setup fee. Live within the hour. No subscriptions, no hidden charges.
+                  Agency-grade infrastructure. Active within the hour. Lifetime support included.
                 </p>
               </div>
               <div className="flex flex-col gap-3 shrink-0 w-full md:w-auto">
@@ -540,6 +538,7 @@ export default function Landing() {
               <div>
                 <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Product</div>
                 <div className="flex flex-col gap-3">
+                  <Link href="/about"><span className="text-gray-400 hover:text-white transition-colors cursor-pointer">About</span></Link>
                   <Link href="/benefits"><span className="text-gray-400 hover:text-white transition-colors cursor-pointer">Benefits</span></Link>
                   <Link href="/process"><span className="text-gray-400 hover:text-white transition-colors cursor-pointer">How It Works</span></Link>
                 </div>
@@ -562,6 +561,10 @@ export default function Landing() {
           </div>
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-gray-600">
             <span>© {new Date().getFullYear()} RAZR Marketing. All rights reserved.</span>
+            <div className="flex gap-4">
+              <Link href="/terms"><span className="hover:text-gray-400 transition-colors cursor-pointer">Terms of Service</span></Link>
+              <Link href="/privacy"><span className="hover:text-gray-400 transition-colors cursor-pointer">Privacy Policy</span></Link>
+            </div>
             <span>Premium Meta Advertising Solutions</span>
           </div>
         </div>

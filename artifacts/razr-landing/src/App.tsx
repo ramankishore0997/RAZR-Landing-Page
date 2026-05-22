@@ -7,6 +7,9 @@ import Contact from "@/pages/Contact";
 import FAQ from "@/pages/FAQ";
 import Benefits from "@/pages/Benefits";
 import Process from "@/pages/Process";
+import About from "@/pages/About";
+import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -22,10 +25,13 @@ function App() {
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Switch>
             <Route path="/" component={Landing} />
+            <Route path="/about" component={About} />
             <Route path="/benefits" component={Benefits} />
             <Route path="/process" component={Process} />
             <Route path="/contact" component={Contact} />
             <Route path="/faq" component={FAQ} />
+            <Route path="/terms" component={Terms} />
+            <Route path="/privacy" component={Privacy} />
             <Route component={Landing} />
           </Switch>
         </WouterRouter>

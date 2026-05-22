@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const WA_LINK = "https://wa.me/917065339146";
 
 const navLinks = [
+  { label: "About", href: "/about" },
   { label: "Benefits", href: "/benefits" },
   { label: "Process", href: "/process" },
   { label: "FAQ", href: "/faq" },
