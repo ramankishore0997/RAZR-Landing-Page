@@ -1,0 +1,68 @@
+Create a premium, modern landing page website for **RAZR Agency Ad Account** with a dark luxury theme (black + blue gradient + glassmorphism effects). The design should look high-end, trustworthy and conversion-focused for Meta advertisers. Mobile-first design with sticky CTA buttons.
+
+Hero Section:
+Headline: **Scale Your Ads With RAZR Agency Ad Accounts**
+Subheadline: **Premium Meta Agency Ad Account Solutions For Fast Scaling & Stable Advertising**
+Small badge: **Blackhat & Whitehat Accounts Available**
+Primary CTA Button: **Get Agency Ad Account**
+Secondary CTA: **Talk To Support**
+
+Add animated counters:
+• Fast Activation: Within 1 Hour
+• Setup Fee: ₹1999 Lifetime
+• Top-Up Fee: 2% Only
+• Minimum Deposit: $50
+
+Benefits Section with premium icon cards:
+
+🚀 Unlimited Ad Spend From Day 1
+🛡 Lower Risk of Restrictions
+💬 Priority Chat Support
+📈 Better Scaling Ability
+🎯 High-Quality Audience & Leads
+⚡ Fast Activation Within 1 Hour
+♾ Lifetime Access & Replacement Support
+💲 Minimum Deposit: $50
+✅ Supports Multiple Business Categories
+✅ Suitable For Different Advertising Niches & Offers
+✅ Higher Spending Capacity
+✅ Better Stability For Scaling Campaigns
+✅ Business-Friendly Setup
+✅ Long-Term Advertising Support
+✅ Lifetime Replacement Support
+✅ Remaining Balance Transfer Support If Account Faces Issues
+✅ Faster Campaign Management
+✅ Agency-Level Support
+✅ Ideal For Agencies, Brands & Advertisers
+✅ Easy Scaling & Team Access
+
+Pricing Section:
+Title: **Simple Pricing**
+Card Design:
+Setup Fee: ₹1999 (Lifetime)
+Top-Up Fee: 2%
+Activation Time: Within 1 Hour
+CTA Button: **Activate Now**
+
+Process Timeline Section:
+
+1. Submit Request
+2. Complete Setup Payment
+3. Account Activation
+4. Start Running Ads
+
+Trust Section:
+Show premium stats cards:
+• Fast Activation
+• Lifetime Support
+• Scaling Ready
+• Agency Grade
+
+Sticky floating WhatsApp button and “Get Started” CTA visible on all screens.
+
+Footer:
+RAZR Agency Ad Account
+Premium Meta Advertising Solutions
+
+Style Requirements:
+Ultra premium UI, smooth animations, glass cards, neon glow effects, mobile responsive, high conversion layout, modern SaaS style, professional dashboard look.
