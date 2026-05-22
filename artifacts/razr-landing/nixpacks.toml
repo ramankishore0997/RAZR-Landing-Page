@@ -1,8 +1,8 @@
 [phases.install]
-cmds = ["pnpm install --frozen-lockfile"]
+cmds = ["pnpm install --no-frozen-lockfile"]
 
 [phases.build]
-cmds = ["pnpm --filter @workspace/razr-landing run build"]
+cmds = ["pnpm run build"]
 
 [start]
-cmd = "npx serve artifacts/razr-landing/dist/public -l $PORT -s"
+cmd = "npx serve dist/public -l $PORT -s"
