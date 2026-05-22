@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { ChevronRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WA_LINK = "https://wa.me/917065339146";
@@ -14,124 +14,105 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [location] = useLocation();
 
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
-
   return (
     <>
-      <nav
-        className={`fixed top-0 w-full z-50 border-b transition-all duration-300 ${
-          scrolled
-            ? "border-white/10 bg-background/80 backdrop-blur-2xl"
-            : "border-white/5 bg-background/40 backdrop-blur-xl"
-        }`}
-      >
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" data-testid="link-logo">
-            <div className="font-black text-3xl tracking-tighter bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent flex items-center gap-2 cursor-pointer select-none">
-              RAZR<span className="text-primary text-4xl leading-none">.</span>
+      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-7xl">
+          {/* Left Logo */}
+          <Link href="/">
+            <div className="font-display font-bold text-2xl tracking-tighter text-white cursor-pointer select-none">
+              RAZR.
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
-            {navLinks.map((link) =>
-              link.href.startsWith("/") && !link.href.startsWith("/#") ? (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  data-testid={`link-nav-${link.label.toLowerCase()}`}
-                  className={`hover:text-white transition-colors ${
-                    location === link.href ? "text-primary" : ""
-                  }`}
-                >
+          {/* Center Links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith("/#");
+              const content = (
+                <span className="relative group text-sm font-medium text-gray-300 hover:text-white transition-colors cursor-pointer py-2">
                   {link.label}
-                </Link>
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                </span>
+              );
+
+              return isHash ? (
+                <a key={link.label} href={link.href}>{content}</a>
               ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  data-testid={`link-nav-${link.label.toLowerCase()}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+                <Link key={link.label} href={link.href}>{content}</Link>
+              );
+            })}
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* Right CTA */}
+          <div className="flex items-center gap-4">
             <a
               href={WA_LINK}
               target="_blank"
               rel="noreferrer"
-              data-testid="link-nav-whatsapp"
-              className="hidden md:flex bg-white/5 hover:bg-white/10 text-white border border-white/10 px-5 py-2.5 rounded-full font-semibold text-sm transition-all items-center gap-2 hover:border-white/20"
+              className="hidden md:flex bg-white text-black px-4 py-2 rounded-md font-semibold text-xs hover:bg-gray-200 transition-colors"
             >
-              Get Started <ChevronRight className="w-4 h-4" />
+              Get Started
             </a>
             <button
-              onClick={() => setMenuOpen((v) => !v)}
-              data-testid="button-mobile-menu"
-              className="md:hidden text-white/70 hover:text-white p-2"
-              aria-label="Toggle menu"
+              onClick={() => setMenuOpen(true)}
+              className="md:hidden text-white"
+              aria-label="Open menu"
             >
-              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
       </nav>
 
+      {/* Full-screen mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-20 left-0 right-0 z-40 bg-background/95 backdrop-blur-2xl border-b border-white/10 px-6 py-6 flex flex-col gap-5 md:hidden"
+            className="fixed inset-0 z-[60] bg-[#0a0a0c] flex flex-col"
           >
-            {navLinks.map((link) =>
-              link.href.startsWith("/") && !link.href.startsWith("/#") ? (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  data-testid={`link-mobile-${link.label.toLowerCase()}`}
-                  className="text-white/70 hover:text-white font-semibold text-lg transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  data-testid={`link-mobile-${link.label.toLowerCase()}`}
-                  className="text-white/70 hover:text-white font-semibold text-lg transition-colors"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noreferrer"
-              data-testid="link-mobile-cta"
-              className="mt-2 w-full py-4 bg-primary text-white rounded-xl font-bold text-center text-lg"
-            >
-              Get Agency Ad Account
-            </a>
+            <div className="flex items-center justify-between p-4 border-b border-white/10">
+              <div className="font-display font-bold text-2xl tracking-tighter text-white">
+                RAZR.
+              </div>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="text-white p-2 bg-white/5 rounded-full"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="flex-1 flex flex-col justify-center px-8 gap-8">
+              {navLinks.map((link) => {
+                const isHash = link.href.startsWith("/#");
+                const content = (
+                  <span className="text-3xl font-display font-bold text-gray-300 hover:text-white transition-colors block">
+                    {link.label}
+                  </span>
+                );
+
+                return isHash ? (
+                  <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}>{content}</a>
+                ) : (
+                  <Link key={link.label} href={link.href} onClick={() => setMenuOpen(false)}>{content}</Link>
+                );
+              })}
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 bg-white text-black py-4 rounded-lg font-bold text-center text-lg"
+              >
+                Get Agency Account
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
